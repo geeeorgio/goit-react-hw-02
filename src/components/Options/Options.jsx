@@ -1,9 +1,5 @@
 import css from './Options.module.css';
 
-const Notification = ({ message }) => {
-  return <li className={css.notification}>{message}</li>;
-};
-
 const OptionBtn = ({ updateFeedback, label }) => {
   return (
     <button
@@ -19,25 +15,23 @@ const OptionBtn = ({ updateFeedback, label }) => {
 const ResetBtn = ({ resetFeedback }) => {
   return (
     <button className={css.resetBtn} onClick={resetFeedback} type="reset">
-      Reset
+      reset
     </button>
   );
 };
 
-const Options = ({ updateFeedback, resetFeedback, points, totalMarks }) => {
+const Options = ({ updateFeedback, resetFeedback, marks, totalMarks }) => {
   return (
     <ul className={css.list}>
-      {points.map((label, idx) => (
+      {marks.map((label, idx) => (
         <li className={css.item} key={idx + label}>
           <OptionBtn updateFeedback={updateFeedback} label={label} />
         </li>
       ))}
-      {totalMarks > 0 ? (
+      {totalMarks > 0 && (
         <li>
           <ResetBtn resetFeedback={resetFeedback} />
         </li>
-      ) : (
-        <Notification message="No feedback yet" />
       )}
     </ul>
   );

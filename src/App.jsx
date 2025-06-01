@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Description from './components/Description/Description';
 import Options from './components/Options/Options';
 import Feedback from './components/Feedback/Feedback';
+import Notification from './components/Notification/Notification';
 import './App.css';
 
 const initial = {
@@ -37,10 +38,10 @@ function App() {
       <Options
         resetFeedback={resetFeedback}
         updateFeedback={updateFeedback}
-        points={Object.keys(ranks)}
+        marks={Object.keys(ranks)}
         totalMarks={total}
       />
-      {total > 0 && (
+      {total > 0 ? (
         <Feedback
           results={[
             ...Object.entries(ranks),
@@ -48,6 +49,8 @@ function App() {
             ['positive', positivePercent],
           ]}
         />
+      ) : (
+        <Notification message="No feedback yet" />
       )}
     </>
   );
